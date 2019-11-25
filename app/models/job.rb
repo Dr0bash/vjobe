@@ -1,4 +1,4 @@
 class Job < ApplicationRecord
-  belongs_to :job_spheres
+  belongs_to :job_sphere
 end
 

@@ -1,4 +1,4 @@
 class Employer < ApplicationRecord
-  has_one :favourite_employees
+  has_one :favourite_employee
   has_many :applications
 end
