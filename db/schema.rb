@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_24_164518) do
+ActiveRecord::Schema.define(version: 2019_11_25_193606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,25 +41,15 @@ ActiveRecord::Schema.define(version: 2019_11_24_164518) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "application_pictures", force: :cascade do |t|
-    t.string "url"
-  end
-
   create_table "applications", force: :cascade do |t|
     t.text "description"
     t.text "address"
     t.float "min_salary"
     t.float "rating"
     t.bigint "employees_id"
-    t.bigint "pictures_of_application_id"
     t.bigint "jobs_id"
     t.index ["employees_id"], name: "index_applications_on_employees_id"
     t.index ["jobs_id"], name: "index_applications_on_jobs_id"
-    t.index ["pictures_of_application_id"], name: "index_applications_on_pictures_of_application_id"
-  end
-
-  create_table "employee_pictures", force: :cascade do |t|
-    t.string "url"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -78,14 +68,8 @@ ActiveRecord::Schema.define(version: 2019_11_24_164518) do
     t.string "country"
     t.string "city"
     t.integer "pref_min_sal"
-    t.bigint "pictures_of_employee_id"
     t.bigint "jobs_id"
     t.index ["jobs_id"], name: "index_employees_on_jobs_id"
-    t.index ["pictures_of_employee_id"], name: "index_employees_on_pictures_of_employee_id"
-  end
-
-  create_table "employer_pictures", force: :cascade do |t|
-    t.string "url"
   end
 
   create_table "employers", force: :cascade do |t|
@@ -94,13 +78,13 @@ ActiveRecord::Schema.define(version: 2019_11_24_164518) do
     t.string "password"
     t.string "mail"
     t.boolean "verified", default: false
-    t.bigint "favourite_employees_id"
-    t.index ["favourite_employees_id"], name: "index_employers_on_favourite_employees_id"
   end
 
   create_table "favourite_employees", force: :cascade do |t|
     t.bigint "employees_id"
+    t.bigint "employers_id"
     t.index ["employees_id"], name: "index_favourite_employees_on_employees_id"
+    t.index ["employers_id"], name: "index_favourite_employees_on_employers_id"
   end
 
   create_table "job_spheres", id: :bigint, default: -> { "nextval('job_sphere_id_seq'::regclass)" }, force: :cascade do |t|
@@ -112,6 +96,17 @@ ActiveRecord::Schema.define(version: 2019_11_24_164518) do
 
   create_table "jobs", force: :cascade do |t|
     t.string "job_title"
+  end
+
+  create_table "pictures", force: :cascade do |t|
+    t.string "url"
+  end
+
+  create_table "tracked_applications", force: :cascade do |t|
+    t.bigint "employers_id"
+    t.bigint "applications_id"
+    t.index ["applications_id"], name: "index_tracked_applications_on_applications_id"
+    t.index ["employers_id"], name: "index_tracked_applications_on_employers_id"
   end
 
 end
