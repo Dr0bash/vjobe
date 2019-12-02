@@ -1,4 +1,3 @@
 class TrackedApplication < ApplicationRecord
-  belongs_to :employer
-  has_many :employees
+  belongs_to :employee
 end

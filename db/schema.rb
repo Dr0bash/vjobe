@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_25_193606) do
+ActiveRecord::Schema.define(version: 2019_12_02_164642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,9 +42,9 @@ ActiveRecord::Schema.define(version: 2019_11_25_193606) do
   end
 
   create_table "applications", force: :cascade do |t|
-    t.text "description"
-    t.text "address"
-    t.float "min_salary"
+    t.text "description", null: false
+    t.text "address", null: false
+    t.float "min_salary", null: false
     t.float "rating"
     t.bigint "employees_id"
     t.bigint "jobs_id"
@@ -53,31 +53,33 @@ ActiveRecord::Schema.define(version: 2019_11_25_193606) do
   end
 
   create_table "employees", force: :cascade do |t|
-    t.string "first_name"
-    t.string "second_name"
+    t.string "first_name", null: false
+    t.string "second_name", null: false
     t.string "patronymic"
     t.string "full_name"
-    t.text "description"
-    t.string "mail"
-    t.string "number"
-    t.string "password"
-    t.boolean "gender"
-    t.boolean "verified"
-    t.date "birth_date"
-    t.float "rating"
-    t.string "country"
-    t.string "city"
-    t.integer "pref_min_sal"
+    t.text "description", default: ""
+    t.string "mail", null: false
+    t.string "number", null: false
+    t.string "password", null: false
+    t.boolean "gender", null: false
+    t.boolean "verified", default: false
+    t.date "birth_date", null: false
+    t.float "rating", default: 0.0
+    t.string "country", null: false
+    t.string "city", null: false
+    t.float "pref_min_sal"
     t.bigint "jobs_id"
     t.index ["jobs_id"], name: "index_employees_on_jobs_id"
   end
 
   create_table "employers", force: :cascade do |t|
-    t.string "name"
-    t.string "number"
-    t.string "password"
-    t.string "mail"
+    t.string "name", null: false
+    t.string "number", null: false
+    t.string "password", null: false
+    t.string "mail", null: false
     t.boolean "verified", default: false
+    t.string "country"
+    t.string "city"
   end
 
   create_table "favourite_employees", force: :cascade do |t|
@@ -88,18 +90,20 @@ ActiveRecord::Schema.define(version: 2019_11_25_193606) do
   end
 
   create_table "job_spheres", id: :bigint, default: -> { "nextval('job_sphere_id_seq'::regclass)" }, force: :cascade do |t|
-    t.string "sphere_title"
-    t.text "description"
+    t.string "sphere_title", null: false
+    t.text "description", default: ""
     t.bigint "jobs_id"
     t.index ["jobs_id"], name: "index_job_spheres_on_jobs_id"
   end
 
   create_table "jobs", force: :cascade do |t|
-    t.string "job_title"
+    t.string "job_title", null: false
   end
 
   create_table "pictures", force: :cascade do |t|
     t.string "url"
+    t.bigint "owner_id"
+    t.string "owner_type"
   end
 
   create_table "tracked_applications", force: :cascade do |t|
