@@ -1,0 +1,23 @@
+</form>
+<h1>Employee registration</h1>
+<input type="button" value="Выйти" onClick='location.href="http://localhost:3000"'>
+<input type="button" value="Назад" onClick='location.href="http://localhost:3000/registration"'>
+<input type="button" value="Зарегистрироваться">
+
+<%= form_with scope: :employee, url: employee_path, local: true do |form| %>
+  <p>
+    <%= form.label :first_name %><br>
+    <%= form.text_field :first_name %>
+  </p>
+
+  <p>
+    <%= form.label :second_name %><br>
+    <%= form.text_field :second_name %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+</form>
+

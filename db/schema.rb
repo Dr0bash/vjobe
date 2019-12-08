@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_02_164642) do
+ActiveRecord::Schema.define(version: 2019_12_04_185623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,9 @@ ActiveRecord::Schema.define(version: 2019_12_02_164642) do
     t.float "rating"
     t.bigint "employees_id"
     t.bigint "jobs_id"
+    t.bigint "employers_id"
     t.index ["employees_id"], name: "index_applications_on_employees_id"
+    t.index ["employers_id"], name: "index_applications_on_employers_id"
     t.index ["jobs_id"], name: "index_applications_on_jobs_id"
   end
 
@@ -56,7 +58,6 @@ ActiveRecord::Schema.define(version: 2019_12_02_164642) do
     t.string "first_name", null: false
     t.string "second_name", null: false
     t.string "patronymic"
-    t.string "full_name"
     t.text "description", default: ""
     t.string "mail", null: false
     t.string "number", null: false
