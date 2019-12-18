@@ -1,23 +1,67 @@
 </form>
-<h1>Employee registration</h1>
-<input type="button" value="Выйти" onClick='location.href="http://localhost:3000"'>
-<input type="button" value="Назад" onClick='location.href="http://localhost:3000/registration"'>
-<input type="button" value="Зарегистрироваться">
+<h2>Sign up employee</h2>
 
-<%= form_with scope: :employee, url: employee_path, local: true do |form| %>
-  <p>
-    <%= form.label :first_name %><br>
-    <%= form.text_field :first_name %>
-  </p>
+<%= form_with scope: :employee, url: employee_path, local: true do |f| %>
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
 
-  <p>
-    <%= form.label :second_name %><br>
-    <%= form.text_field :second_name %>
-  </p>
+  <div class="field">
+  <%= f.label :second_name %><br />
+  <%= f.text_field :second_name, autofocus: true %>
+  </div>
 
-  <p>
-    <%= form.submit %>
-  </p>
+  <div class="field">
+    <%= f.label :phone_number %><br />
+    <%= f.telephone_field :number, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.select(:gender, raw('<option value="0">Female</option><option value="1">Male</option>')) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :birth_date %><br />
+    <%= f.date_field :birth_date, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :country %><br />
+    <%= f.text_field :country, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
 <% end %>
 </form>
+
+<input type="button" value="Выйти" onClick='location.href="http://localhost:3000"'>
+<input type="button" value="Назад" onClick='location.href="http://localhost:3000/registration"'>
+
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_185623) do
+ActiveRecord::Schema.define(version: 2019_12_16_164622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,28 +59,57 @@ ActiveRecord::Schema.define(version: 2019_12_04_185623) do
     t.string "second_name", null: false
     t.string "patronymic"
     t.text "description", default: ""
-    t.string "mail", null: false
     t.string "number", null: false
-    t.string "password", null: false
     t.boolean "gender", null: false
-    t.boolean "verified", default: false
     t.date "birth_date", null: false
     t.float "rating", default: 0.0
     t.string "country", null: false
     t.string "city", null: false
     t.float "pref_min_sal"
     t.bigint "jobs_id"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["confirmation_token"], name: "index_employees_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_employees_on_email", unique: true
     t.index ["jobs_id"], name: "index_employees_on_jobs_id"
+    t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
 
   create_table "employers", force: :cascade do |t|
     t.string "name", null: false
     t.string "number", null: false
-    t.string "password", null: false
-    t.string "mail", null: false
-    t.boolean "verified", default: false
     t.string "country"
     t.string "city"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_employers_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_employers_on_reset_password_token", unique: true
   end
 
   create_table "favourite_employees", force: :cascade do |t|
@@ -93,12 +122,12 @@ ActiveRecord::Schema.define(version: 2019_12_04_185623) do
   create_table "job_spheres", id: :bigint, default: -> { "nextval('job_sphere_id_seq'::regclass)" }, force: :cascade do |t|
     t.string "sphere_title", null: false
     t.text "description", default: ""
-    t.bigint "jobs_id"
-    t.index ["jobs_id"], name: "index_job_spheres_on_jobs_id"
   end
 
   create_table "jobs", force: :cascade do |t|
     t.string "job_title", null: false
+    t.bigint "job_spheres_id"
+    t.index ["job_spheres_id"], name: "index_jobs_on_job_spheres_id"
   end
 
   create_table "pictures", force: :cascade do |t|
