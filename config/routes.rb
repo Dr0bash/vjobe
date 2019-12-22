@@ -18,11 +18,14 @@ Rails.application.routes.draw do
   get 'employee' => 'employee#show'
   get 'employer' => 'employer#show'
   get 'search_applications' => 'request#index'
-  get 'applications' => 'request#show'
+  get 'applications' => 'request#index_emp'
   get 'applications/new' => 'request#new'
   post 'applications/new' => 'request#create'
-  get 'application/:id/edit', to: 'request#edit', as: :request
+  get 'application/:id/edit', to: 'request#edit', as: :edit_request
   patch 'application/:id/edit', to: 'request#update'
+  get 'application/:id' => 'request#show'
+  delete 'applications' => 'request#destroy', as: :delete_request
+  post 'search_applications' => 'request#cancel_apply'
 
   devise_scope :employee do
     get 'employees/sign_out' => 'devise/sessions#destroy'

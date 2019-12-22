@@ -1,6 +1,6 @@
 <html>
   <body>
-    <%= form_for(@request, url: request_path, local: true) do |f| %>
+    <%= form_for(@request, url: edit_request_path, local: true) do |f| %>
     <div class="field">
       <%= f.label :description %><br>
       <%= f.text_field :description %><br>

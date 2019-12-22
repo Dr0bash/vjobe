@@ -1,4 +1,4 @@
-<!--% if employee_signed_in?%-->
+<% if employee_signed_in?%>
   <html>
   <head>
     <script>
@@ -74,6 +74,7 @@
         <th>Address</th>
         <th>Min_salary</th>
         <th>Job</th>
+        <th>Apply</th>
       </tr>
       </thead>
       <tbody>
@@ -84,6 +85,7 @@
           <td><%= item.address %></td>
           <td><%= item.min_salary %></td>
           <td><%= item.job.job_title %></td>
+          <td><%= @requestbid.include?(item.id) ? (button_to "Cancel",  { action: :cancel_apply, employee_id: current_employee.id, application_id: item.id, type: 0}, remote: true, method: :post) : (button_to "Apply",  { action: :cancel_apply, employee_id: current_employee.id, application_id: item.id, type: 1}, remote: true, method: :post)  %></td>
         </tr>
       <% end %>
       </tbody>
@@ -91,7 +93,7 @@
   </body>
 </html>
 
-  <input type="button" value="На главную" onClick='location.href="http://localhost:3000"'>
-<!--%else %-->
-  <!--meta http-equiv="refresh" content="1;URL=/" /-->
-<!--% end %-->
+  <input type="button" value="На главную" onClick='location.href="/"'>
+<%else %>
+  <meta http-equiv="refresh" content="1;URL=/" />
+<% end %>
