@@ -54,3 +54,5 @@ gem 'activeadmin'
 gem 'devise'
 
 gem 'sinatra'
+
+gem 'gon'

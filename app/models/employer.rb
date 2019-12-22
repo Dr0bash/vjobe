@@ -13,7 +13,7 @@ class Employer < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :favourite_employee
   has_many :employees, through: :favourite_employee
-  has_many :applications
+  has_many :requests
   has_many :pictures, as: :owner
   validates :name, :number, :email, presence: true
   #validates_with EmployerInputValidator

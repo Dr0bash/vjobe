@@ -1,4 +1,4 @@
-<% if employer_signed_in?%>
+<!--% if employee_signed_in?%-->
   <html>
   <head>
     <script>
@@ -66,31 +66,32 @@
       }
     </style>
   </head>
-  <table class = "table_sort">
-    <thead>
-    <tr>
-      <th>First name</th>
-      <th>Second name</th>
-      <th>Patronymic</th>
-      <th>Email</th>
-      <th>Rating</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @employee.each do |item| %>
+    <table class = "table_sort">
+      <thead>
       <tr>
-        <td><%= link_to item.first_name, employee_path + "?id=" + item.id.to_s %></td>
-        <td><%= item.second_name %></td>
-        <td><%= item.patronymic %></td>
-        <td><%= item.email %></td>
-        <td><%= item.rating %></td>
+        <th>Employer name</th>
+        <th>Description</th>
+        <th>Address</th>
+        <th>Min_salary</th>
+        <th>Job</th>
       </tr>
-    <% end %>
-    </tbody>
-  </table>
-  </html>
+      </thead>
+      <tbody>
+      <% @request.each do |item| %>
+        <tr>
+          <td><%= item.employer.name %></td>
+          <td><%= item.description %></td>
+          <td><%= item.address %></td>
+          <td><%= item.min_salary %></td>
+          <td><%= item.job.job_title %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </body>
+</html>
 
   <input type="button" value="На главную" onClick='location.href="http://localhost:3000"'>
-<%else %>
-  <meta http-equiv="refresh" content="1;URL=/" />
-<% end %>
+<!--%else %-->
+  <!--meta http-equiv="refresh" content="1;URL=/" /-->
+<!--% end %-->

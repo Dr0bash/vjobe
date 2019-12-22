@@ -1,0 +1,79 @@
+<html>
+<head>
+  <script>
+
+      var arr = [111, 222, 333, 444, 555],
+          list = document.createElement('select'),
+          item = document.createElement('option');
+      list.name='myList';
+      for (var i = 0; i < arr.length; i++) {
+          item.text = arr[i];
+          item.value = arr[i];
+          list.appendChild(item.cloneNode(true));
+      }
+
+      //document.body.appendChild(list);
+
+      function makeUL(array) {
+          // Create the list element:
+          var list = document.createElement('ul');
+
+          for (var i = 0; i < array.length; i++) {
+              // Create the list item:
+              var item = document.createElement('li');
+
+              // Set its contents:
+              item.appendChild(document.createTextNode(array[i]));
+
+              // Add it to the list:
+              list.appendChild(item);
+          }
+
+          // Finally, return the constructed list:
+          return list;
+      }
+  </script>
+  <style>
+    #otstup{
+    margin-top: 50px
+    }
+  </style>
+</head>
+<body>
+</form>
+<h2>Create application</h2>
+
+
+<%= form_with scope: :request, url: '', local: true do |f| %>
+  <div class="field">
+    <%= f.label :description %><br/>
+    <%= f.text_field :description, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :min_salary %><br />
+    <%= f.number_field :min_salary, in: 2.0..100.00, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :job_id %>
+    <%= f.select(:job_id, Job.all.collect {|u| [u.job_title, u.id]}, :prompt => 'Select') %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :employer_id, :value => current_employer.id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Создать" %>
+  </div>
+<% end %>
+</form>
+<input type="button" value="Назад" onClick='location.href="/applications"'>
+</body>
+</html>

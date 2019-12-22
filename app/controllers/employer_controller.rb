@@ -20,5 +20,5 @@ end
 
 private
 def employer_params
-  params.require(:employer).permit()
+  params.require(:employer).permit(:name, :number, :country, :city, :email,:password, :password_confirmation)
 end

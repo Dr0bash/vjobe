@@ -1,6 +1,6 @@
+<% if employer_signed_in? %>
 </form>
 <h1>employer page</h1>
-<input type="button" value="Выйти" onClick='location.href="http://localhost:3000"'>
 
 <p>
   <strong>Title:</strong>
@@ -12,3 +12,8 @@
   <%= @employer.email %>
 </p>
 </form>
+<%else %>
+  <% redirect_to root_path %>
+<% end %>
+
+<input type="button" value="К начальной странице" onClick='location.href="/"'>

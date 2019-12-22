@@ -17,6 +17,12 @@ Rails.application.routes.draw do
   get 'search_employees' => 'employee#index'
   get 'employee' => 'employee#show'
   get 'employer' => 'employer#show'
+  get 'search_applications' => 'request#index'
+  get 'applications' => 'request#show'
+  get 'applications/new' => 'request#new'
+  post 'applications/new' => 'request#create'
+  get 'application/:id/edit', to: 'request#edit', as: :request
+  patch 'application/:id/edit', to: 'request#update'
 
   devise_scope :employee do
     get 'employees/sign_out' => 'devise/sessions#destroy'

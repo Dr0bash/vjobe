@@ -1,3 +1,6 @@
+<% if employer_signed_in? or employee_signed_in? %>
+  <meta http-equiv="refresh" content="1;URL=/" />
+<% else %>
 </form>
 <h2>Sign up employee</h2>
 
@@ -49,4 +52,5 @@
 <input type="button" value="Выйти" onClick='location.href="http://localhost:3000"'>
 <input type="button" value="Назад" onClick='location.href="http://localhost:3000/registration"'>
 
+<%end %>
 

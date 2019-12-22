@@ -1,14 +1,21 @@
 </form>
 <h1>employee page</h1>
-<input type="button" value="Выйти" onClick='location.href="http://localhost:3000"'>
 
 <p>
-  <strong>Title:</strong>
+  <strong>First_name:</strong>
   <%= @employee.first_name %>
 </p>
 
 <p>
-  <strong>Text:</strong>
+  <strong>Second_name:</strong>
   <%= @employee.second_name %>
 </p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @employee.rating %>
+</p>
+<% if employee_signed_in? and @employee.id == current_employee.id %>
+<% end %>
+<input type="button" value="К главной странице" onClick='location.href="/"'>
 </form>

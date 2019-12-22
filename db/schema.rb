@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_16_164622) do
+ActiveRecord::Schema.define(version: 2019_12_21_201949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,19 +39,6 @@ ActiveRecord::Schema.define(version: 2019_12_16_164622) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
-  end
-
-  create_table "applications", force: :cascade do |t|
-    t.text "description", null: false
-    t.text "address", null: false
-    t.float "min_salary", null: false
-    t.float "rating"
-    t.bigint "employees_id"
-    t.bigint "jobs_id"
-    t.bigint "employers_id"
-    t.index ["employees_id"], name: "index_applications_on_employees_id"
-    t.index ["employers_id"], name: "index_applications_on_employers_id"
-    t.index ["jobs_id"], name: "index_applications_on_jobs_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -136,11 +123,31 @@ ActiveRecord::Schema.define(version: 2019_12_16_164622) do
     t.string "owner_type"
   end
 
-  create_table "tracked_applications", force: :cascade do |t|
+  create_table "requests", force: :cascade do |t|
+    t.text "description", null: false
+    t.text "address", null: false
+    t.float "min_salary", null: false
+    t.float "rating"
+    t.bigint "employee_id"
+    t.bigint "job_id"
+    t.bigint "employer_id"
+    t.index ["employee_id"], name: "index_requests_on_employees_id"
+    t.index ["employer_id"], name: "index_requests_on_employers_id"
+    t.index ["job_id"], name: "index_requests_on_jobs_id"
+  end
+
+  create_table "requests_bids", force: :cascade do |t|
+    t.bigint "employees_id"
+    t.bigint "applications_id"
+    t.index ["applications_id"], name: "index_requests_bids_on_applications_id"
+    t.index ["employees_id"], name: "index_requests_bids_on_employees_id"
+  end
+
+  create_table "tracked_requests", force: :cascade do |t|
     t.bigint "employers_id"
     t.bigint "applications_id"
-    t.index ["applications_id"], name: "index_tracked_applications_on_applications_id"
-    t.index ["employers_id"], name: "index_tracked_applications_on_employers_id"
+    t.index ["applications_id"], name: "index_tracked_requests_on_applications_id"
+    t.index ["employers_id"], name: "index_tracked_requests_on_employers_id"
   end
 
 end

@@ -1,0 +1,28 @@
+<html>
+  <body>
+    <%= form_for(@request, url: request_path, local: true) do |f| %>
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_field :description %><br>
+    </div>
+
+    <div class="field">
+      <%= f.label :address %><br>
+      <%= f.text_field :address %><br>
+    </div>
+    <div class="field">
+      <%= f.label :min_salary %><br>
+      <%= f.number_field :min_salary %><br>
+    </div>
+    <div class="field">
+      <%= f.label :job_id %>
+      <%= f.select(:job_id, Job.all.collect {|u| [u.job_title, u.id]}, :prompt => 'Select') %>
+    </div>
+    <div class="field">
+      <%= f.label :rating %><br>
+      <%= f.number_field :rating,in: 0.0..5.00 %><br>
+    </div>
+      <%= f.submit "Submit Edit" %>
+    <% end %>
+  </body>
+</html>
