@@ -6,16 +6,45 @@ class RequestController < ApplicationController
   end
 
   def index_emp
-    @request = Request.where(employer_id: current_employer.id).joins(:job)
-    #@request = Request.where(employer_id: current_employer.id).joins(:condition)#.joins(:employee)#.joins(:status)
-    #@request = Request.where(employer_id: current_employer.id).joins("INNER JOIN statuses ON requests.status_id = statuses.id")
+    @request = Request.where(employer_id: current_employer.id).joins(:job).joins(:condition).joins(:employee)
+  end
+
+  def choose_employee
+    @employee = RequestsBid.where(request_id: params[:id]).joins(:request).joins(:employee)
+   # @requestbid = RequestsBid.where.().pluck(:request_id)
+   @curempinapp = Request.find(params[:id]).employee_id
+  end
+
+  def final_apply
+    @req = Request.find(params[:request_id])
+    if @req.employee.id == 0
+      @req.update(employee_id: params[:employee_id], condition_id: 2)
+      @req.save
+    else
+      @req.update(employee_id: 0, condition_id: 1)
+      @req.save
+    end
+
+    path = '/application/' + params[:request_id] + '/choose_employee'
+    redirect_to path
+  end
+
+  def cancel_apply
+    if RequestsBid.where(request_id: params[:request_id]).where(employee_id: current_employee.id).empty?
+      @requestbid = RequestsBid.new(request_id: params[:request_id], employee_id: current_employee.id)
+      @requestbid.save!
+    else
+      @requestb = RequestsBid.find_by(request_id: params[:request_id], employee_id: current_employee.id)
+      @requestb.destroy
+    end
+
+    redirect_to '/search_applications'
   end
 
   def index
     @request = Request.joins(:employer).joins(:job)
-    #@requestbid = RequestsBid.find_by(employee_id: current_employee_id, application_id: )
-   # @requestbid = RequestsBid.find_by(employee_id: current_employee.id).map{|r| r.application_id}
-    @requestbid = RequestsBid.pluck(:application_id)
+    #@requestbid = RequestsBid.pluck(:request_id)
+    @requestbid = RequestsBid.where(employee_id: current_employee.id).pluck(:request_id)
   end
 
   def create
@@ -44,18 +73,7 @@ class RequestController < ApplicationController
     redirect_to '/applications'
   end
 
-  def cancel_apply
-    puts(params[:type])
-    if params[:type] == "0"
-      @requestb = RequestsBid.find_by(application_id: params[:application_id], employee_id: params[:employee_id])
-      @requestb.destroy
-    else
-      @requestbid = RequestsBid.new(application_id: params[:application_id], employee_id: params[:employee_id])
-      @requestbid.save!
-    end
 
-    redirect_to '/search_applications'
-  end
 end
 
 private

@@ -1,4 +1,4 @@
-<% if employee_signed_in?%>
+<% if employer_signed_in?%>
   <html>
   <head>
     <script>
@@ -66,34 +66,31 @@
       }
     </style>
   </head>
-    <table class = "table_sort">
-      <thead>
+  <table class = "table_sort">
+    <thead>
+    <tr>
+      <th>First name</th>
+      <th>Second name</th>
+      <th>Patronymic</th>
+      <th>Rating</th>
+      <th>Apply?</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @employee.each do |item| %>
       <tr>
-        <th>Employer name</th>
-        <th>Description</th>
-        <th>Address</th>
-        <th>Min_salary</th>
-        <th>Job</th>
-        <th>Apply</th>
+        <td><%= link_to item.employee.first_name, employee_path + "?id=" + item.employee.id.to_s %></td>
+        <td><%= item.employee.second_name %></td>
+        <td><%= item.employee.patronymic %></td>
+        <td><%= item.employee.rating %></td>
+        <td><%= @curempinapp == 0 ? (button_to "Apply",  { action: :final_apply, employee_id: item.employee.id, request_id: item.request.id}, remote: true, method: :post) : (@curempinapp == item.employee.id ? (button_to "Cancel",  { action: :final_apply, employee_id: item.employee.id, request_id: item.request.id}, remote: true, method: :post) : ('Работник выбран')) %></td>
       </tr>
-      </thead>
-      <tbody>
-      <% @request.each do |item| %>
-        <tr>
-          <td><%= item.employer.name %></td>
-          <td><%= item.description %></td>
-          <td><%= item.address %></td>
-          <td><%= item.min_salary %></td>
-          <td><%= item.job.job_title %></td>
-          <td><%= item.condition.id == 1 ? (@requestbid.include?(item.id) ? (button_to "Cancel",  { action: :cancel_apply, request_id: item.id}, remote: true, method: :post) : (button_to "Apply",  { action: :cancel_apply, request_id: item.id}, remote: true, method: :post)) : ('Заявление рассмотрено') %></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </body>
-</html>
+    <% end %>
+    </tbody>
+  </table>
+  </html>
 
-  <input type="button" value="На главную" onClick='location.href="/"'>
+  <input type="button" value="На главную" onClick='location.href="http://localhost:3000"'>
 <%else %>
   <meta http-equiv="refresh" content="1;URL=/" />
 <% end %>

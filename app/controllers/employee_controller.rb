@@ -8,7 +8,7 @@ class EmployeeController < ApplicationController
   end
 
   def index
-    @employee = Employee.all
+    @employee = Employee.where.not(id: 0)
   end
 
   def create

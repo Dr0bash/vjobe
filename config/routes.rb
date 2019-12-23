@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   get 'application/:id' => 'request#show'
   delete 'applications' => 'request#destroy', as: :delete_request
   post 'search_applications' => 'request#cancel_apply'
+  #get 'applications/choose_employee' => 'request#choose_employee'
+  get 'application/:id/choose_employee', to: 'request#choose_employee', as: :choose_employee
+  post 'application/:id/choose_employee', to: 'request#final_apply'
 
   devise_scope :employee do
     get 'employees/sign_out' => 'devise/sessions#destroy'

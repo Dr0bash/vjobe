@@ -86,8 +86,8 @@
       <td><%= item.address %></td>
       <td><%= item.min_salary %></td>
       <td><%= item.job.job_title %></td>
-      <td><!--%= item.employee.id == 0 ? ('Работник не выбран') : (link_to item.employee.first_name + ' ' + item.employee.second_name, employee_path + "?id=" + item.employee.id.to_s)%--> </td>
-      <td><!--%= item.condition.title %--></td>
+      <td><%= item.employee.id == 0 ? (link_to "Работник не выбран", choose_employee_path(item.id)) : (link_to item.employee.first_name + ' ' + item.employee.second_name, employee_path + "?id=" + item.employee.id.to_s)%><br><%= item.employee.id != 0 ? (link_to "Перевыбрать", choose_employee_path(item.id)) : "" %></td>
+      <td><%= item.condition.title %></td>
       <td><h3><%= link_to "edit", edit_request_path(item.id) %></h3></td>
       <td><%= button_to "Delete",  { action: :destroy, id: item.id }, method: :delete %></td>
     </tr>
