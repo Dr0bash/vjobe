@@ -56,3 +56,5 @@ gem 'devise'
 gem 'sinatra'
 
 gem 'gon'
+
+gem 'vuejs'
