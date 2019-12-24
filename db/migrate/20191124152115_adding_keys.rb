@@ -1,5 +1,6 @@
 class AddingKeys < ActiveRecord::Migration[6.0]
   def change
+    rename_table :job_sphere, :job_spheres
     add_reference :applications, :employees
     add_reference :applications, :pictures_of_application
     add_reference :applications, :jobs
