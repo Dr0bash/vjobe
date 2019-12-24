@@ -83,15 +83,24 @@
       </tr>
       </thead>
       <tbody>
-      <% @request.each do |item| %>
-        <tr>
-          <td><%= item.employer.name %></td>
-          <td><%= item.description %></td>
-          <td><%= item.address %></td>
-          <td><%= item.min_salary %></td>
-          <td><%= item.job.job_title %></td>
-          <td><%= item.condition.id == 1 ? (@requestbid.include?(item.id) ? (button_to "Cancel",  { action: :cancel_apply, request_id: item.id}, remote: true, method: :post) : (button_to "Apply",  { action: :cancel_apply, request_id: item.id}, remote: true, method: :post)) : ('Заявление рассмотрено') %></td>
-        </tr>
+      <% if @request.empty? %>
+        <td><%= 'Похоже, что свободных вакансий нет ¯\_(ツ)_/¯' %></td>
+        <td><%= 'Похоже, что свободных вакансий нет ¯\_(ツ)_/¯' %></td>
+        <td><%= 'Похоже, что свободных вакансий нет ¯\_(ツ)_/¯' %></td>
+        <td><%= 'Похоже, что свободных вакансий нет ¯\_(ツ)_/¯' %></td>
+        <td><%= 'Похоже, что свободных вакансий нет ¯\_(ツ)_/¯' %></td>
+        <td><%= 'Похоже, что свободных вакансий нет ¯\_(ツ)_/¯' %></td>
+      <% else %>
+        <% @request.each do |item| %>
+          <tr>
+            <td><%= item.employer.name %></td>
+            <td><%= item.description %></td>
+            <td><%= item.address %></td>
+            <td><%= item.min_salary %></td>
+            <td><%= item.job.job_title %></td>
+            <td><%= item.condition.id == 1 ? (@requestbid.include?(item.id) ? (button_to "Cancel",  { action: :cancel_apply, request_id: item.id}, remote: true, method: :post) : (button_to "Apply",  { action: :cancel_apply, request_id: item.id}, remote: true, method: :post)) : ('Заявление рассмотрено') %></td>
+          </tr>
+        <% end %>
       <% end %>
       </tbody>
     </table>
