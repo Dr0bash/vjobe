@@ -17,7 +17,7 @@ class SecondTry < ActiveRecord::Migration[6.0]
       t.float :rating
     end
 
-    create_table :job_sphere do |t|
+    create_table :job_spheres do |t|
       t.string :sphere_title
       t.text :description
     end
