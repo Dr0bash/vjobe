@@ -15,8 +15,8 @@
       <%= f.number_field :min_salary %><br>
     </div>
     <div class="field">
-      <%= f.label :job_id %>
-      <%= f.select(:job_id, Job.all.collect {|u| [u.job_title, u.id]}, :prompt => 'Select') %>
+      <%= f.label :jobs_id %>
+      <%= f.select(:jobs_id, Job.all.collect {|u| [u.job_title, u.id]}, :prompt => 'Select') %>
     </div>
     <div class="field">
       <%= f.label :rating %><br>

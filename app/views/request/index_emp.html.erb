@@ -32,6 +32,11 @@
       color: #ffebcd;
       background: #008b8b;
       cursor: pointer;
+      font-size: large;
+    }
+
+    .table_sort td {
+      font-size: medium;
     }
 
     .table_sort td,
@@ -88,8 +93,8 @@
       <td><%= item.job.job_title %></td>
       <td><%= item.employee.id == 0 ? (link_to "Работник не выбран", choose_employee_path(item.id)) : (link_to item.employee.first_name + ' ' + item.employee.second_name, employee_path + "?id=" + item.employee.id.to_s)%><br><%= item.employee.id != 0 ? (link_to "Перевыбрать", choose_employee_path(item.id)) : "" %></td>
       <td><%= item.condition.title %></td>
-      <td><h3><%= link_to "edit", edit_request_path(item.id) %></h3></td>
-      <td><%= button_to "Delete",  { action: :destroy, id: item.id }, method: :delete %></td>
+      <td><%= item.condition.id == 1 ? (link_to "Edit", edit_request_path(item.id)) : ('Нельзя изменить, так как выбран работник') %></td>
+      <td><%= item.condition.id == 1 ? (button_to "Delete",  { action: :destroy, id: item.id }, method: :delete) : ('Нельзя удалить, так как выбран работник') %></td>
     </tr>
   <% end %>
   </tbody>

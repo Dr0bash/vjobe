@@ -57,16 +57,24 @@
 
   <div class="field">
     <%= f.label :min_salary %><br />
-    <%= f.number_field :min_salary, in: 2.0..100.00, autofocus: true %>
+    <%= f.number_field :min_salary, in: 0.0..10000.00, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :job_id %>
-    <%= f.select(:job_id, Job.all.collect {|u| [u.job_title, u.id]}, :prompt => 'Select') %>
+    <%= f.label :jobs_id %>
+    <%= f.select(:jobs_id, Job.all.collect {|u| [u.job_title, u.id]}, :prompt => 'Select') %>
   </div>
 
   <div class="field">
-    <%= f.hidden_field :employer_id, :value => current_employer.id %>
+    <%= f.hidden_field :employees_id, :value => 0 %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :conditions_id, :value => 1 %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :employers_id, :value => current_employer.id %>
   </div>
 
   <div class="actions">

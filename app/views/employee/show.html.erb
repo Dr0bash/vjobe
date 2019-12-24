@@ -1,5 +1,5 @@
 </form>
-<h1>employee page</h1>
+<h1>My profile</h1>
 
 <p>
   <strong>First_name:</strong>
@@ -17,5 +17,5 @@
 </p>
 <% if employee_signed_in? and @employee.id == current_employee.id %>
 <% end %>
-<input type="button" value="К главной странице" onClick='location.href="/"'>
+<input type="button" value="Назад" onClick='location.href="/"'>
 </form>

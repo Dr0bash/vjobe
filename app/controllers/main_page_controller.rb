@@ -1,9 +1,9 @@
 class MainPageController < ApplicationController
   def index
-    if !(current_employer.nil?)
-      @currentEmp = current_employer.id
-    elsif !(current_employee.nil?)
-      @currentEmpl = current_employee.id
+    if !(current_employee.nil?)
+      @employee = Employee.find(current_employee.id)
+    elsif !(current_employer.nil?)
+      @employer = Employer.find(current_employer.id)
     end
   end
 end
