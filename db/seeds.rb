@@ -5,7 +5,7 @@
 #
 #   movies = Movie.new([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.new(name: 'Luke', movie: movies.first)
-#AdminUser.create!(email: 'igorshamaev9@gmail.com', password: '123456789', password_confirmation: '123456789') if Rails.env.development?
+AdminUser.create!(email: 'igorshamaev9@gmail.com', password: '!0)1@0)0IgOrSh', password_confirmation: '!0)1@0)0IgOrSh') if Rails.env.development?
 #
 #Employee.create!(password: '123456',first_name: 'Иван', second_name: 'Иванов', patronymic: 'Иванович', description: 'Я - Ваня', number: '88005553535',  gender: true, birth_date: '01.01.2000', country: 'Россия', city: 'Ростов-на-Дону', pref_min_sal: 3000, email: 'ivan@yandex.ru', created_at: '15.12.2019', updated_at: '15.12.2019')
 #Employee.create!(password: '123456',first_name: 't', second_name: 't', patronymic: 't', description: '', number: '00000000000',  gender: true, birth_date: '01.01.2000', country: 't', city: 't', pref_min_sal: 100, email: 'bot@mail.ru', created_at: '21.12.2019', updated_at: '21.12.2019')
