@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_23_155537) do
+ActiveRecord::Schema.define(version: 2019_12_24_171023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,21 +132,21 @@ ActiveRecord::Schema.define(version: 2019_12_23_155537) do
     t.text "address", null: false
     t.float "min_salary", null: false
     t.float "rating"
-    t.bigint "job_id"
-    t.bigint "employer_id"
-    t.bigint "condition_id"
+    t.bigint "jobs_id"
+    t.bigint "employers_id"
+    t.bigint "conditions_id"
     t.bigint "employees_id"
-    t.index ["condition_id"], name: "index_requests_on_conditions_id"
+    t.index ["conditions_id"], name: "index_requests_on_conditions_id"
     t.index ["employees_id"], name: "index_requests_on_employees_id"
-    t.index ["employer_id"], name: "index_requests_on_employers_id"
-    t.index ["job_id"], name: "index_requests_on_jobs_id"
+    t.index ["employers_id"], name: "index_requests_on_employers_id"
+    t.index ["jobs_id"], name: "index_requests_on_jobs_id"
   end
 
   create_table "requests_bids", force: :cascade do |t|
-    t.bigint "employee_id"
-    t.bigint "request_id"
-    t.index ["employee_id"], name: "index_requests_bids_on_employees_id"
-    t.index ["request_id"], name: "index_requests_bids_on_applications_id"
+    t.bigint "employees_id"
+    t.bigint "requests_id"
+    t.index ["employees_id"], name: "index_requests_bids_on_employees_id"
+    t.index ["requests_id"], name: "index_requests_bids_on_requests_id"
   end
 
   create_table "tracked_requests", force: :cascade do |t|
