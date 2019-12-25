@@ -74,14 +74,14 @@
 <table class = "table_sort">
   <thead>
   <tr>
-    <th>Description</th>
-    <th>Address</th>
-    <th>Min salary</th>
-    <th>Job title</th>
-    <th>Employee</th>
-    <th>Status</th>
-    <th>Edit</th>
-    <th>Delete</th>
+    <th>Описание</th>
+    <th>Адрес</th>
+    <th>Минимальная зарплата</th>
+    <th>Тип работы</th>
+    <th>Работник</th>
+    <th>Статус заявления</th>
+    <th>Редактировать</th>
+    <th>Удалить</th>
   </tr>
   </thead>
   <tbody>
@@ -93,8 +93,8 @@
       <td><%= item.job.job_title %></td>
       <td><%= item.employee.id == 0 ? (link_to "Работник не выбран", choose_employee_path(item.id)) : (link_to item.employee.first_name + ' ' + item.employee.second_name, employee_path + "?id=" + item.employee.id.to_s)%><br><%= item.employee.id != 0 ? (link_to "Перевыбрать", choose_employee_path(item.id)) : "" %></td>
       <td><%= item.condition.title %></td>
-      <td><%= item.condition.id == 1 ? (link_to "Edit", edit_request_path(item.id)) : ('Нельзя изменить, так как выбран работник') %></td>
-      <td><%= item.condition.id == 1 ? (button_to "Delete",  { action: :destroy, id: item.id }, method: :delete) : ('Нельзя удалить, так как выбран работник') %></td>
+      <td><%= item.condition.id == 1 ? (link_to "Редактировать", edit_request_path(item.id)) : ('Нельзя изменить, так как выбран работник') %></td>
+      <td><%= item.condition.id == 1 ? (button_to "Удалить",  { action: :destroy, id: item.id }, method: :delete) : ('Нельзя удалить, так как выбран работник') %></td>
     </tr>
   <% end %>
   </tbody>

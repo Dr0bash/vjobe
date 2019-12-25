@@ -69,12 +69,12 @@
   <table class = "table_sort">
     <thead>
     <tr>
-      <th>Employer name</th>
-      <th>Description</th>
-      <th>Address</th>
-      <th>Min_salary</th>
-      <th>Job</th>
-      <th>Apply</th>
+      <th>Имя работодателя</th>
+      <th>Описание</th>
+      <th>Адрес</th>
+      <th>Минимальная зарплата</th>
+      <th>Тип работы</th>
+      <th>Подтверждение</th>
     </tr>
     </thead>
     <tbody>
@@ -85,7 +85,7 @@
         <td><%= item.address %></td>
         <td><%= item.min_salary %></td>
         <td><%= item.job.job_title %></td>
-        <td><%= button_to "Apply",  { action: :apply, id: item.id } %></td>
+        <td><%= button_to "Под",  { action: :apply, id: item.id } %></td>
       </tr>
     <% end %>
     </tbody>

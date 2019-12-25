@@ -2,7 +2,7 @@
   <meta http-equiv="refresh" content="1;URL=/" />
 <% else %>
 </form>
-<h2>Sign up employee</h2>
+<h2>Регистрация работника</h2>
 
 <%= form_with scope: :employee, url: employee_path, local: true do |f| %>
   <div class="field">
@@ -59,7 +59,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Зарегистрироваться" %>
   </div>
 <% end %>
 </form>

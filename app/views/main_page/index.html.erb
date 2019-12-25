@@ -10,20 +10,20 @@
 <body>
 <p class="navbar-text float-right">
   <% if employee_signed_in? %>
-    Logged in as <strong><%= 'Employee: ' + @employee.first_name + ' ' + @employee.second_name %></strong>.
-    <h3><%= link_to 'My profile', employee_path + '?id=' + current_employee.id.to_s, :class => 'navbar-link' %></h3>
-    <h3><%= link_to 'Edit profile', edit_employee_registration_path, :class => 'navbar-link' %></h3>
-    <h3><%= link_to 'Search applications', '/search_applications', :class => 'navbar-link' %></h3>
-    <h3><%= link_to "Logout", destroy_employee_session_path, method: :delete, :class => 'navbar-link'  %></h3>
+    Logged in as <strong><%= 'Работник: ' + @employee.first_name + ' ' + @employee.second_name %></strong>.
+    <h3><%= link_to 'Мой профиль', employee_path + '?id=' + current_employee.id.to_s, :class => 'navbar-link' %></h3>
+    <h3><%= link_to 'Редактировать профиль', edit_employee_registration_path, :class => 'navbar-link' %></h3>
+    <h3><%= link_to 'Искать заявления', '/search_applications', :class => 'navbar-link' %></h3>
+    <h3><%= link_to "Выйти", destroy_employee_session_path, method: :delete, :class => 'navbar-link'  %></h3>
   <% elsif employer_signed_in? %>
-    Logged in as <strong><%= 'employer' %></strong>.
-    <h3><%= link_to 'My applications', 'applications', :class => 'navbar-link' %></h3>
-    <h3><%= link_to 'My profile', employer_path + '?id=' + current_employer.id.to_s, :class => 'navbar-link' %></h3>
-    <h3><%= link_to 'Edit profile', edit_employer_registration_path, :class => 'navbar-link' %></h3>
-    <h3><%= link_to "Logout", destroy_employer_session_path, method: :delete, :class => 'navbar-link'  %></h3>
+    Logged in as <strong><%= 'Работодатель' + @employer.name %></strong>.
+    <h3><%= link_to 'Мои заявления', 'applications', :class => 'navbar-link' %></h3>
+    <h3><%= link_to 'Мой профиль', employer_path + '?id=' + current_employer.id.to_s, :class => 'navbar-link' %></h3>
+    <h3><%= link_to 'Редактировать профиль', edit_employer_registration_path, :class => 'navbar-link' %></h3>
+    <h3><%= link_to "Выйти", destroy_employer_session_path, method: :delete, :class => 'navbar-link'  %></h3>
   <%else %>
-    <h2><hr><%= link_to "Sign up", 'registration', :class => 'navbar-link' %></hr></h2>
-    <h2><hr><%= link_to "Login", :log_path, :class => 'navbar-link'  %></hr></h2>
+    <h2><hr><%= link_to "Зарегистрироваться", 'registration', :class => 'navbar-link' %></hr></h2>
+    <h2><hr><%= link_to "Войти", :log_path, :class => 'navbar-link'  %></hr></h2>
   <% end %>
   </p>
   </body>
